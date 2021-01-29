@@ -1,0 +1,11 @@
+$background-color1: rgb(204, 0, 255);
+$background-color2: rgb(55, 97, 71);
+$font-color:rgb(212, 208, 228);
+
+body {
+  background-color: $background-color2;
+}
+
+h2 {
+  color: $font-color;
+}

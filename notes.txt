@@ -1,0 +1,107 @@
+1. Struktura
+src
+  |
+  --index.js
+  |
+  --index.html
+  |
+  --style.scss
+
+2. Tworzymy plik package.json
+npm init -y
+
+3. Instalacja webpack-cli
+npm i -D webpack webpack-cli
+
+npx webpack
+powinno działać po wyświetleniu index.html w przeglądarce.
+
+4. Katalog dist z main.js
+Utworzył się katalog dist z wygenerowanym plikiem main.js - plik zoptymalizowany, jeden plik spaja wiele .js'ów
+
+5. Konfiguracja package.json
+Dodajemy skrypty
+„build” : „webpack” i możemy uruchamiać webpacka instrukcją npm run build
+konfigurujemy skrypty package.json (start serve, build, build-dev)
+  "scripts": {
+    "start": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack --watch",
+    "build-dev": "webpack --watch"
+  },
+
+6. Instalacja babel loader dla obsługi starszych przeglądarek
+npm i @babel/core @babel/preset-env babel-loader
+
+7. Tworzymy plik .babelrc
+{
+"presets": ["@babel/preset-env"]
+}
+
+8. Tworzymy webpack.config.js
+// const path = require('path');
+
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+module.exports = {
+    mode: mode,
+
+    // entry: './src/index.js',
+    // output: {
+    //     filename: 'sample1.js',
+    //     path: path.resolve(__dirname, 'public')
+    // },
+
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use:{
+                    loader: 'babel-loader'
+                },
+
+                test: /\.s[ac]ss$/i,
+                use: [
+                  // Creates `style` nodes from JS strings
+                  "style-loader",
+                  // Translates CSS into CommonJS
+                  "css-loader",
+                  // Compiles Sass to CSS
+                  "sass-loader",
+                  {
+                      loader:"sass-loader",
+                      options: {
+                          implementation: require("sass"),
+                          sassOptions: {
+                            fiber: require("fibers")
+                          }
+                      }
+                  }
+                ],
+            }
+        ]
+    },
+
+devtool: 'source-map',
+
+devServer: {
+    contentBase: './dist'
+}
+
+}
+
+9. Tworzymy plik .gitignore
+
+10. Instalujemy server
+npm i -D webpack-dev-server
+
+11. Instalujemy loadery
+npm install sass-loader sass webpack --save-dev
+npm install css-loader css webpack --save-dev
+npm install style-loader style webpack --save-dev
+
+12. Instalujemy fibers: npm i fibers
+
+https://webpack.js.org/loaders/sass-loader/
