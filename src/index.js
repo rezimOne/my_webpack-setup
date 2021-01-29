@@ -7,3 +7,16 @@ function masterObject(name){
 
 let newObject = new masterObject('Michał');
 console.log(newObject.say());
+
+document.getElementById("text1").innerHTML = newObject.say();
+
+let myFun = function(){
+    let a = newObject.name;
+    if (a === 'Michał') {
+        return 'Gooood';
+    } else {
+        return 'hyyy?';
+    }
+}
+
+document.getElementById("text2").innerHTML = myFun();
