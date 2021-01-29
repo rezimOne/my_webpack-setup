@@ -1,3 +1,6 @@
+https://webpack.js.org/loaders/sass-loader/
+
+
 1. Struktura
 src
   |
@@ -10,16 +13,31 @@ src
 2. Tworzymy plik package.json
 npm init -y
 
-3. Instalacja webpack-cli
-npm i -D webpack webpack-cli
+3. Instalacja pakietów
+webpack-cli
+>>> npm i -D webpack webpack-cli
+
+babel loader dla obsługi starszych przeglądarek
+>>> npm i @babel/core @babel/preset-env babel-loader
+
+loadery
+>>> npm install sass-loader sass webpack --save-dev
+>>> npm install css-loader css webpack --save-dev
+>>> npm install style-loader style webpack --save-dev
+
+fibers
+>>> npm i fibers
+
+4. Instalujemy server
+>>> npm i -D webpack-dev-server
 
 npx webpack
 powinno działać po wyświetleniu index.html w przeglądarce.
 
-4. Katalog dist z main.js
+5. Katalog dist z main.js
 Utworzył się katalog dist z wygenerowanym plikiem main.js - plik zoptymalizowany, jeden plik spaja wiele .js'ów
 
-5. Konfiguracja package.json
+6. Konfiguracja package.json
 Dodajemy skrypty
 „build” : „webpack” i możemy uruchamiać webpacka instrukcją npm run build
 konfigurujemy skrypty package.json (start serve, build, build-dev)
@@ -29,9 +47,6 @@ konfigurujemy skrypty package.json (start serve, build, build-dev)
     "build": "NODE_ENV=production webpack --watch",
     "build-dev": "webpack --watch"
   },
-
-6. Instalacja babel loader dla obsługi starszych przeglądarek
-npm i @babel/core @babel/preset-env babel-loader
 
 7. Tworzymy plik .babelrc
 {
@@ -94,14 +109,4 @@ devServer: {
 
 9. Tworzymy plik .gitignore
 
-10. Instalujemy server
-npm i -D webpack-dev-server
-
-11. Instalujemy loadery
-npm install sass-loader sass webpack --save-dev
-npm install css-loader css webpack --save-dev
-npm install style-loader style webpack --save-dev
-
-12. Instalujemy fibers: npm i fibers
-
-https://webpack.js.org/loaders/sass-loader/
+10. plik index.html do folderu './dist'
