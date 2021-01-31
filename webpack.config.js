@@ -1,54 +1,66 @@
-// const path = require('path');
-
-const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: mode,
+    devtool: "source-map",
 
-    // entry: './src/index.js',
-    // output: {
-    //     filename: 'sample1.js',
-    //     path: path.resolve(__dirname, 'public')
-    // },
+    entry: {
+        main: path.resolve(__dirname, './src/app.js'),
+      },
 
+    output: {
+        filename: '[name].app-build.js',
+        path: path.resolve(__dirname, 'deploy')
+      },
+
+    devServer: {
+        port: 4200,
+        contentBase: './deploy',
+        open: true
+      },
 
     module: {
         rules: [
+
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use:{
-                    loader: 'babel-loader'
-                },
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
 
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
-                  // Creates `style` nodes from JS strings
-                  "style-loader",
-                  // Translates CSS into CommonJS
-                  "css-loader",
-                  // Compiles Sass to CSS
-                  "sass-loader",
-                  {
-                      loader:"sass-loader",
-                      options: {
-                          implementation: require("sass"),
-                          sassOptions: {
-                            fiber: require("fibers")
-                          }
-                      }
-                  }
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {sourceMap: true}
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {sourceMap: true}
+                    },
                 ],
-            }
+            },
+
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+
         ]
     },
 
-devtool: 'source-map',
-
-devServer: {
-    port:4200,
-    contentBase: './src',
-    watchContentBase: true
-}
-
-}
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "Webpack Output",
+        }),
+        new CleanWebpackPlugin()
+    ],
+};
