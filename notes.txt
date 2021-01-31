@@ -110,6 +110,11 @@ module.exports = {
     ],
 };
 
+6. Uruchamiamy
+>>> npm run dev
+>>> npm run build
+
+---
 https://www.sitepoint.com/webpack-beginner-guide/
 
 https://webpack.js.org/loaders/sass-loader/
