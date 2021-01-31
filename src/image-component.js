@@ -1,6 +1,8 @@
 import image from "./image.png";
 
-const img = document.createElement("img");
-img.src = image;
-
-document.body.appendChild(img);
+export default function myFunction3(){
+    const img = document.createElement("img");
+    img.className = 'face-img';
+    img.src = image;
+    return img;
+}
