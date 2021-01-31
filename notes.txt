@@ -1,4 +1,6 @@
-1. Struktura w katalogu src, np.
+1. Struktura
+src
+>>>>>>> 10111b078a6c4a58c0f54e63d708eb1dccbff88d
   |
   --app.js
   |
