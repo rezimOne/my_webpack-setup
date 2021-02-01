@@ -1,26 +1,22 @@
-export default function myFunction1() {
-  const element = document.createElement('div');
-  element.className = 'text1';
-  element.innerHTML = subObject1.say();
-  return element;
-  }
+export function launchComponent1(){
+    let parent = document.createElement('div');
+    parent.className = "box-component1";
+    let child = document.createElement('p');
+    child.id = "text-component1";
+    child.innerHTML = myObject1.say();
+    parent.appendChild(child);
+    return parent;
+    }
+    
+    class mainObject1 {
+        constructor(name) {
+            this.name = name;
+            this.say = function () {
+            return "Hi, my name is " + this.name + ".</br> I'am an object from component1.";
+            };
+        }
+    }
 
-function mainObject1(name){
-  this.name = name;
-  this.say = function(){return "Hello, I'm " + this.name + ' :)';}
-}
-
-let subObject1 = new mainObject1('Funky Cow');
-
-
-
-// export default (text = "Hello my friend :D") => {
-//     const element = document.createElement("h1");
-//     element.innerHTML = text;
-//     return element;
-//   };
-
-
-
-
-
+let myObject1 = new mainObject1('Sigma');
+console.log(myObject1);
+console.log(typeof myObject1);

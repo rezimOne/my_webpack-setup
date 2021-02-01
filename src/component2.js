@@ -1,14 +1,22 @@
-export default function myFunction2() {
-  const element = document.createElement('div');
-  element.className = 'text2';
-  element.innerHTML = subObject2.say();
-  return element;
-  }
+export function launchComponent2(){
+    let parent = document.createElement('div');
+    parent.className = "box-component2";
+    let child = document.createElement('p');
+    child.id = "text-component2";
+    child.innerHTML = myObject2.say();
+    parent.appendChild(child);
+    return parent;
+    }
 
-function mainObject2(name){
-  this.name = name;
-  this.say = function(){return "Hello, I'm " + this.name + ' :)';}
-}
+    class mainObject2 {
+        constructor(name) {
+            this.name = name;
+            this.say = function () {
+                return "Hello, my name is " + this.name + ".</br> I'm an object from component2.";
+            };
+        }
+    }
 
-let subObject2 = new mainObject2('Michał');
-
+let myObject2 = new mainObject2('Pi');
+console.log(myObject2);
+console.log(typeof myObject2);
