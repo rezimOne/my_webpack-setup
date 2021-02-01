@@ -6,3 +6,5 @@ export function launchComponent3(){
     parent.appendChild(child);
     return parent;
     }
+
+console.log('Zzzzz...');
