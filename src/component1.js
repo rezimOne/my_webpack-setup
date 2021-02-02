@@ -2,7 +2,7 @@ class mainObject1 {
     constructor(name) {
         this.name = name;
         this.say = function () {
-            return `Hi, my name is ${this.name}.</br> I'm an ${typeof myObject1} from component1.`;
+            return `Hi, my name is ${this.name}.</br> I'm an ${typeof myObject1} from component1.js`;
         };
     }
 }
